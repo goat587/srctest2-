@@ -26,7 +26,7 @@ async def start(_, message):
         return 
     else:
         await message.reply_photo(
-            photo="https://i.imgur.com/gfS9mKo.jpeg",
+            photo="https://i.imghippo.com/files/TvnJ4931gM.jpg",
             caption=script.START_TXT.format(message.from_user.first_name),
             reply_markup=buttons
         )
