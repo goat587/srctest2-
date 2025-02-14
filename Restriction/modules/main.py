@@ -72,7 +72,7 @@ users_loop = {}
 async def process_and_upload_link(userbot, user_id, msg_id, link, msg):
     try:
         await get_msg(userbot, user_id, msg_id, link, msg)
-        await asyncio.sleep(2.5)
+        await asyncio.sleep(5.0)
     finally:
         pass
 
@@ -189,7 +189,7 @@ async def fbatch_link(_, message):
         users_loop[user_id] = True
 
         for i in range(s, s + 21): 
-            await asyncio.sleep(4.5)
+            await asyncio.sleep(5.0)
             if user_id in users_loop and users_loop[user_id]:
                 msg = await message.reply_text("<b><i>Processing...</i></b>")
                 try:
