@@ -23,15 +23,15 @@ async def generate_session(_, message):
     joined = await subscribe(_, message)
     if joined == 1:
         return
-                
+
     user_id = message.chat.id   
-    
+
     number = await _.ask(user_id, 'Please enter your phone number along with the country code. \nExample: +19876543210', filters=filters.text)   
     phone_number = number.text
     try:
         await message.reply("📲 Sending OTP...")
         client = Client(random_word(8), api_id, api_hash)
-        
+
         await client.connect()
     except Exception as e:
         await message.reply(f"❌ Failed to send OTP {e}. Please wait and try again later.")
@@ -51,7 +51,7 @@ async def generate_session(_, message):
     phone_code = otp_code.text.replace(" ", "")
     try:
         await client.sign_in(phone_number, code.phone_code_hash, phone_code)
-                
+
     except PhoneCodeInvalid:
         await message.reply('❌ Invalid OTP. Please restart the session.')
         return
@@ -74,5 +74,3 @@ async def generate_session(_, message):
     await db.set_session(user_id, string_session)
     await client.disconnect()
     await otp_code.reply("✅ Login successful!")
-
-
